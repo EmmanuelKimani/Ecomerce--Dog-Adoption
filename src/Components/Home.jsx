@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 const Home = () => {
   // Inline styles for the component
@@ -11,60 +11,131 @@ const Home = () => {
     },
     header: {
       textAlign: "center",
-      padding: "40px",
-      backgroundColor: "#ff6347",
+      padding: "60px",
+      background: "linear-gradient(135deg, #ff6347, #ff4500)",
       color: "white",
+      borderRadius: "10px",
+      boxShadow: "0px 10px 30px rgba(0, 0, 0, 0.1)",
+      animation: "fadeIn 2s ease-out",
     },
     headerTitle: {
-      fontSize: "3em",
-      marginBottom: "10px",
+      fontSize: "4em",
+      fontWeight: "bold",
+      marginBottom: "15px",
+      textTransform: "uppercase",
+      letterSpacing: "5px",
+      animation: "bounce 2s infinite alternate",
     },
     headerText: {
-      fontSize: "1.2em",
+      fontSize: "1.4em",
+      fontStyle: "italic",
+      textShadow: "2px 2px 4px rgba(0, 0, 0, 0.2)",
     },
     cardContainer: {
       display: "flex",
       flexWrap: "wrap",
       justifyContent: "center",
-      gap: "20px",
-      padding: "20px",
+      gap: "30px",
+      padding: "40px",
     },
     card: {
-      backgroundColor: "white",
-      borderRadius: "8px",
+      backgroundColor: "#ffffff",
+      borderRadius: "12px",
+      width: "320px",
+      boxShadow: "0 8px 20px rgba(0, 0, 0, 0.15)",
+      transition: "transform 0.3s ease, box-shadow 0.3s ease",
       overflow: "hidden",
-      width: "300px",
-      boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
-      transition: "transform 0.3s ease",
+      position: "relative",
     },
     cardHover: {
-      transform: "translateY(-10px)",
+      transform: "scale(1.1)",
+      boxShadow: "0 16px 40px rgba(0, 0, 0, 0.25)",
     },
     cardContent: {
-      padding: "20px",
+      padding: "25px",
+      textAlign: "center",
+      backgroundColor: "#f9f9f9",
+      borderTop: "5px solid #ff6347",
+      position: "relative",
     },
     cardTitle: {
-      fontSize: "1.8em",
-      marginBottom: "10px",
+      fontSize: "2em",
+      marginBottom: "15px",
+      fontWeight: "bold",
+      textTransform: "uppercase",
     },
     cardText: {
-      fontSize: "1em",
+      fontSize: "1.1em",
       color: "#555",
+      marginBottom: "20px",
+      lineHeight: "1.5",
     },
     footer: {
       textAlign: "center",
-      padding: "20px",
+      padding: "25px",
       backgroundColor: "#333",
       color: "white",
+      position: "relative",
+      marginTop: "50px",
+      borderTop: "2px solid #555",
     },
     footerText: {
-      fontSize: "1.1em",
+      fontSize: "1.2em",
+      letterSpacing: "1px",
     },
     emoji: {
-      fontSize: "1.5em",
-      marginRight: "10px",
+      fontSize: "2em",
+      marginRight: "15px",
+    },
+    testimonialCard: {
+      backgroundColor: "#fafafa",
+      borderRadius: "10px",
+      width: "320px",
+      boxShadow: "0 4px 10px rgba(0, 0, 0, 0.1)",
+      padding: "20px",
+      margin: "20px",
+      textAlign: "center",
+    },
+    testimonialText: {
+      fontSize: "1.2em",
+      fontStyle: "italic",
+      color: "#444",
+      marginBottom: "15px",
+    },
+    callToActionCard: {
+      backgroundColor: "#ff6347",
+      borderRadius: "10px",
+      width: "320px",
+      boxShadow: "0 4px 10px rgba(0, 0, 0, 0.1)",
+      padding: "25px",
+      margin: "20px",
+      color: "white",
+      textAlign: "center",
+      textTransform: "uppercase",
+    },
+    callToActionText: {
+      fontSize: "1.3em",
+      fontWeight: "bold",
+      marginBottom: "15px",
+    },
+    callToActionButton: {
+      backgroundColor: "#ffffff",
+      color: "#ff6347",
+      border: "none",
+      borderRadius: "5px",
+      padding: "12px 20px",
+      fontSize: "1.2em",
+      cursor: "pointer",
+      transition: "background-color 0.3s ease",
+    },
+    callToActionButtonHover: {
+      backgroundColor: "#ff4500",
+      color: "white",
     },
   };
+
+  // State to manage hover effect
+  const [hoveredCard, setHoveredCard] = useState(null);
 
   return (
     <div style={styles.container}>
@@ -77,7 +148,14 @@ const Home = () => {
       </header>
 
       <div style={styles.cardContainer}>
-        <div style={styles.card}>
+        <div
+          style={{
+            ...styles.card,
+            ...(hoveredCard === "about" ? styles.cardHover : {}),
+          }}
+          onMouseEnter={() => setHoveredCard("about")}
+          onMouseLeave={() => setHoveredCard(null)}
+        >
           <div style={styles.cardContent}>
             <h2 style={styles.cardTitle}>
               <span style={styles.emoji}>🐾</span>About Us
@@ -89,7 +167,14 @@ const Home = () => {
           </div>
         </div>
 
-        <div style={styles.card}>
+        <div
+          style={{
+            ...styles.card,
+            ...(hoveredCard === "adopt" ? styles.cardHover : {}),
+          }}
+          onMouseEnter={() => setHoveredCard("adopt")}
+          onMouseLeave={() => setHoveredCard(null)}
+        >
           <div style={styles.cardContent}>
             <h2 style={styles.cardTitle}>
               <span style={styles.emoji}>🐶</span>Adopt
@@ -101,7 +186,14 @@ const Home = () => {
           </div>
         </div>
 
-        <div style={styles.card}>
+        <div
+          style={{
+            ...styles.card,
+            ...(hoveredCard === "volunteer" ? styles.cardHover : {}),
+          }}
+          onMouseEnter={() => setHoveredCard("volunteer")}
+          onMouseLeave={() => setHoveredCard(null)}
+        >
           <div style={styles.cardContent}>
             <h2 style={styles.cardTitle}>
               <span style={styles.emoji}>🤝</span>Volunteer
@@ -113,7 +205,14 @@ const Home = () => {
           </div>
         </div>
 
-        <div style={styles.card}>
+        <div
+          style={{
+            ...styles.card,
+            ...(hoveredCard === "donate" ? styles.cardHover : {}),
+          }}
+          onMouseEnter={() => setHoveredCard("donate")}
+          onMouseLeave={() => setHoveredCard(null)}
+        >
           <div style={styles.cardContent}>
             <h2 style={styles.cardTitle}>
               <span style={styles.emoji}>💖</span>Donate
@@ -123,6 +222,28 @@ const Home = () => {
               helps us continue our mission to help animals in need.
             </p>
           </div>
+        </div>
+
+        <div style={styles.testimonialCard}>
+          <h3>What People Are Saying</h3>
+          <p style={styles.testimonialText}>
+            "The shelter gave me the best companion I could ever ask for! Thank
+            you for everything you do for these animals!"
+          </p>
+        </div>
+
+        <div style={styles.callToActionCard}>
+          <h3 style={styles.callToActionText}>Ready to make a difference?</h3>
+          <p>
+            Support our mission today by adopting, volunteering, or donating!
+          </p>
+          <button
+            style={styles.callToActionButton}
+            onMouseOver={(e) => (e.target.style.backgroundColor = "#ff4500")}
+            onMouseOut={(e) => (e.target.style.backgroundColor = "#ffffff")}
+          >
+            Get Involved
+          </button>
         </div>
       </div>
 

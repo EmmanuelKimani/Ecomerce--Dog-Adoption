@@ -8,6 +8,7 @@ const Adddog = () => {
   const [dog_size, setDogSize] = useState("");
   const [adoption_cost, setAdoptionCost] = useState("");
   const [dog_photo, setDogPhoto] = useState("");
+  const[dog_breed,setDogBreed] = useState("")
 
   // Feedback System
   const [loading, setLoading] = useState("");
@@ -26,6 +27,7 @@ const Adddog = () => {
       formData.append("dog_photo", dog_photo);
       formData.append("dog_size", dog_size);
       formData.append("adoption_cost", adoption_cost);
+      formData.append("dog_breed",dog_breed)
 
       // Posting the data
       const response = await axios.post(
@@ -41,6 +43,7 @@ const Adddog = () => {
       setDogPhoto("");
       setDogSize("");
       setAdoptionCost("");
+      setDogBreed("")
     } catch (error) {
       setLoading("");
       setError(error.message);
@@ -66,6 +69,17 @@ const Adddog = () => {
               className="form-control form-control-lg input-style"
               value={dog_name}
               onChange={(e) => setDogName(e.target.value)}
+              required
+            />
+          </div>
+
+          <div className="form-group mb-3">
+            <input
+              type="text"
+              placeholder="Enter Dog Breed"
+              className="form-control form-control-lg input-style"
+              value={dog_breed}
+              onChange={(e) => setDogBreed(e.target.value)}
               required
             />
           </div>
